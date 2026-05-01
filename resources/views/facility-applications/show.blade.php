@@ -2,6 +2,14 @@
 @section('content')
 <h4 class="mb-3">Facility Application Review</h4>
 
+@if(session('temporary_password'))
+    <div class="alert alert-warning">
+        <div class="fw-semibold">Temporary password for manual delivery</div>
+        <div class="font-monospace fs-5">{{ session('temporary_password') }}</div>
+        <div class="small mb-0">Share this with the approved facility contact and ask them to change it after logging in.</div>
+    </div>
+@endif
+
 <div class="card card-body mb-3">
     <p><strong>Organization:</strong> {{ $application->organization_name }}</p>
     <p><strong>Type:</strong> {{ $application->facility_type }}</p>

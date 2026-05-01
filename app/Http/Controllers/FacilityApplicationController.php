@@ -196,12 +196,23 @@ class FacilityApplicationController extends Controller
         }
 
         $message = 'Application review saved.';
+        $flash = [];
+
         if ($data['status'] === 'approved') {
-            $message = $emailSent
-                ? 'Application approved. Onboarding email has been sent to the applicant.'
-                : 'Application approved, but onboarding email could not be sent. Please verify mail settings and retry.';
+            if ($emailSent) {
+                $message = 'Application approved. Onboarding email has been sent to the applicant.';
+            } else {
+                $message = 'Application approved, but onboarding email could not be sent. Please verify mail settings and share the temporary password manually.';
+
+                if ($temporaryPassword !== null) {
+                    $flash['temporary_password'] = $temporaryPassword;
+                }
+            }
         }
 
-        return redirect()->route('facility-applications.show', $facilityApplication)->with('success', $message);
+        return redirect()
+            ->route('facility-applications.show', $facilityApplication)
+            ->with('success', $message)
+            ->with($flash);
     }
 }
