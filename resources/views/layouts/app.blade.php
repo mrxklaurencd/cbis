@@ -36,7 +36,7 @@
     $unreadCount = $showNotificationCenter ? $webUser->unreadNotifications()->whereIn('type', $notificationTypes)->count() : 0;
     $recentNotifications = $showNotificationCenter ? $webUser->notifications()->whereIn('type', $notificationTypes)->latest()->limit(5)->get() : collect();
 @endphp
-<nav class="navbar navbar-expand-lg navbar-dark cbis-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark cbis-navbar" style="background: linear-gradient(90deg, #a3162d, #c9233f); box-shadow: 0 4px 20px rgba(163, 22, 45, 0.3);">
     <div class="container">
         <a class="navbar-brand" href="{{ $webAuthenticated ? route('dashboard') : ($donorAuthenticated ? route('donor.portal.profile') : route('public.index')) }}">CBIS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
