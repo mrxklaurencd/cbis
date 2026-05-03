@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Dumaguete Campus Blood Donation">
+  <rect width="900" height="520" fill="#fff1f2"/>
+  <rect x="85" y="90" width="730" height="340" rx="32" fill="#ffffff" stroke="#fecdd3" stroke-width="8"/>
+  <circle cx="250" cy="260" r="92" fill="#e11d48"/>
+  <path d="M250 168 C315 247 350 312 250 368 C150 312 185 247 250 168Z" fill="#ffffff"/>
+  <text x="405" y="225" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#881337">Campus Blood</text>
+  <text x="405" y="282" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#881337">Donation</text>
+  <text x="405" y="330" font-family="Arial, sans-serif" font-size="24" fill="#be123c">Dumaguete sample event</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Silay Community Blood Station">
+  <rect width="900" height="520" fill="#f0fdfa"/>
+  <rect x="100" y="100" width="700" height="320" rx="28" fill="#ffffff" stroke="#99f6e4" stroke-width="8"/>
+  <rect x="150" y="170" width="220" height="180" rx="18" fill="#ccfbf1"/>
+  <path d="M260 180 C315 248 342 305 260 348 C178 305 205 248 260 180Z" fill="#be123c"/>
+  <text x="420" y="230" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#134e4a">Silay Blood</text>
+  <text x="420" y="287" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#134e4a">Station</text>
+  <text x="420" y="334" font-family="Arial, sans-serif" font-size="24" fill="#0f766e">Sample partner site</text>
+</svg>

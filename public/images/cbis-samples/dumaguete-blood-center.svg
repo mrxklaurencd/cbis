@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Dumaguete Partner Blood Center">
+  <rect width="900" height="520" fill="#f0fdf4"/>
+  <rect x="90" y="95" width="720" height="330" rx="28" fill="#ffffff" stroke="#bbf7d0" stroke-width="8"/>
+  <rect x="145" y="160" width="250" height="200" rx="24" fill="#dcfce7"/>
+  <path d="M270 182 C332 258 365 318 270 370 C175 318 208 258 270 182Z" fill="#dc2626"/>
+  <text x="435" y="225" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#14532d">Dumaguete</text>
+  <text x="435" y="282" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#14532d">Blood Center</text>
+  <text x="435" y="330" font-family="Arial, sans-serif" font-size="24" fill="#15803d">Sample partner facility</text>
+</svg>

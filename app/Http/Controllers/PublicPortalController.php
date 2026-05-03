@@ -10,6 +10,7 @@ use App\Models\DonationSchedule;
 use App\Models\EventRegistration;
 use App\Models\Facility;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class PublicPortalController extends Controller
@@ -151,7 +152,7 @@ class PublicPortalController extends Controller
                     'contact_number' => $event->contact_number ?: ($event->facility?->contact_number ?? 'N/A'),
                     'lat' => (float) $lat,
                     'lng' => (float) $lng,
-                    'photo_url' => $event->photo_path ? asset('storage/'.$event->photo_path) : null,
+                    'photo_url' => $this->mapPhotoUrl($event->photo_path),
                     'action_url' => route('donor.events.join', $event),
                     'is_registered' => in_array($event->id, $registeredEventIds, true),
                 ];
@@ -171,7 +172,7 @@ class PublicPortalController extends Controller
                     'email' => $location->facility?->email ?? 'N/A',
                     'lat' => (float) $location->latitude,
                     'lng' => (float) $location->longitude,
-                    'photo_url' => $location->photo_path ? asset('storage/'.$location->photo_path) : null,
+                    'photo_url' => $this->mapPhotoUrl($location->photo_path),
                 ];
             })
             ->values();
@@ -261,5 +262,22 @@ class PublicPortalController extends Controller
             ->get()
             ->unique(fn (Facility $facility) => mb_strtolower(trim($facility->name)))
             ->values();
+    }
+
+    private function mapPhotoUrl(?string $path): ?string
+    {
+        if ($path === null || trim($path) === '') {
+            return null;
+        }
+
+        if (Str::startsWith($path, ['http://', 'https://', '/'])) {
+            return $path;
+        }
+
+        if (Str::startsWith($path, 'images/')) {
+            return asset($path);
+        }
+
+        return asset('storage/'.$path);
     }
 }
