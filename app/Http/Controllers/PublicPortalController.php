@@ -42,7 +42,7 @@ class PublicPortalController extends Controller
             ->limit(20)
             ->get();
 
-        $facilities = Facility::query()->where('is_active', true)->orderBy('name')->get();
+        $facilities = $this->publicFacilityOptions();
 
         $registeredEventIds = $this->registeredEventIdsForDonor($schedules->pluck('id')->all());
 
@@ -77,7 +77,7 @@ class PublicPortalController extends Controller
             ->paginate(20)
             ->withQueryString();
 
-        $facilities = Facility::query()->where('is_active', true)->orderBy('name')->get();
+        $facilities = $this->publicFacilityOptions();
 
         $registeredEventIds = $this->registeredEventIdsForDonor($events->pluck('id')->all());
 
@@ -108,7 +108,7 @@ class PublicPortalController extends Controller
 
         $events = $eventsQuery->orderBy('event_date')->orderBy('start_time')->get();
 
-        $facilities = Facility::query()->where('is_active', true)->orderBy('name')->get();
+        $facilities = $this->publicFacilityOptions();
         $registeredEventIds = $this->registeredEventIdsForDonor($events->pluck('id')->all());
 
         $facilityLocationsQuery = BloodBankLocation::query()
@@ -225,11 +225,7 @@ class PublicPortalController extends Controller
             ];
         })->filter(fn (array $facilityAvailability) => $facilityAvailability['blood_types'] !== [])->values();
 
-        $facilityOptions = Facility::query()
-            ->where('is_active', true)
-            ->where('type', 'blood_bank')
-            ->orderBy('name')
-            ->get();
+        $facilityOptions = $this->publicFacilityOptions('blood_bank');
 
         return view('public-portal.availability', [
             'availabilityByFacility' => $availabilityByFacility,
@@ -253,5 +249,17 @@ class PublicPortalController extends Controller
             ->whereIn('donation_schedule_id', $eventIds)
             ->pluck('donation_schedule_id')
             ->all();
+    }
+
+    private function publicFacilityOptions(?string $type = null): Collection
+    {
+        return Facility::query()
+            ->where('is_active', true)
+            ->when($type !== null, fn ($query) => $query->where('type', $type))
+            ->orderBy('name')
+            ->orderBy('id')
+            ->get()
+            ->unique(fn (Facility $facility) => mb_strtolower(trim($facility->name)))
+            ->values();
     }
 }
