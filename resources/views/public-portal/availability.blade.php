@@ -22,7 +22,7 @@
             <label class="form-label">Blood Bank</label>
             <select name="facility_id" class="form-select">
                 <option value="">All</option>
-                @foreach($facilities as $facility)
+                @foreach($facilities->unique(fn ($facility) => mb_strtolower(trim($facility->name))) as $facility)
                     <option value="{{ $facility->id }}" @selected((int) request('facility_id') === $facility->id)>{{ $facility->name }}</option>
                 @endforeach
             </select>
